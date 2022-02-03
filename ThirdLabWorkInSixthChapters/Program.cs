@@ -32,16 +32,18 @@ LinkedList<LinkedList<T>>.
 температур по дням*/
 
 using ThirdLabWorkInSixthChapters;
+var programm = new NumberVowelsAndConsonants(@"C:\Text.txt");
+var value = programm.CountValue();
+Console.WriteLine($"vowels = {value.vowels}; consonants = {value.consonants}");
 
-var first = new int[,] { { 1, 2, 3 }, { 4, 5, 6 } };
+/* var first = new int[,] { { 1, 2, 3 }, { 4, 5, 6 } };
 var second = new int[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
 Print(first);
 Print(second);
 var multiply = new MatrixMultiplication(first,second);
-//multiply.Multiplication();
-multiply.Print();
+multiply.Print(); */
 
-void Print(int [,] array)
+void Print(int[,] array)
 {
     for (int i = 0; i < array.GetLength(0); i++)
     {
