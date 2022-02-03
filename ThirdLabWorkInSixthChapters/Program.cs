@@ -31,12 +31,19 @@ LinkedList<LinkedList<T>>.
 строки – названия месяцев, а в качестве значений – массив значений 
 температур по дням*/
 
-using ThirdLabWorkInSixthChapters;
-var programm = new NumberVowelsAndConsonants(@"C:\Text.txt");
+using ThirdLabWorkInSixthChapters.Thermometer;
+
+var themp = new Thermometer();
+Console.WriteLine(themp.YearAverageTemperaturee());
+var moth = themp.MonthlyAverageTemperature();
+Print(themp.Temperature);
+PrintAverageTemperatures(moth);
+
+/*var programm = new NumberVowelsAndConsonants(@"C:\Text.txt");
 var value = programm.CountValue();
 Console.WriteLine($"vowels = {value.vowels}; consonants = {value.consonants}");
 
-/* var first = new int[,] { { 1, 2, 3 }, { 4, 5, 6 } };
+ var first = new int[,] { { 1, 2, 3 }, { 4, 5, 6 } };
 var second = new int[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
 Print(first);
 Print(second);
@@ -58,4 +65,13 @@ void Print(int[,] array)
         Console.WriteLine("]");
     }
     Console.WriteLine();
+}
+
+void PrintAverageTemperatures(int[] averageTemperatures)
+{
+    Array.Sort(averageTemperatures);
+    for (var i = 0; i < averageTemperatures.Length; i++)
+    {
+        Console.Write($"{averageTemperatures[i]};");
+    }
 }
