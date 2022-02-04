@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ThirdLabWorkInSixthChapters
 {
-    public class MatrixMultiplication
+    public class MatrixMultiplicationArray
     {
         private readonly int[,] _firstMatrix;
         private readonly int[,] _secondMatrix;
         private int[,] multiplicationMatrix;
 
-        public MatrixMultiplication(int[,] firstMatrix, int[,] secondMatrix)
+        public MatrixMultiplicationArray(int[,] firstMatrix, int[,] secondMatrix)
         {
             _firstMatrix = firstMatrix;
             _secondMatrix = secondMatrix;

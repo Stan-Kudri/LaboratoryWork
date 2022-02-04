@@ -1,6 +1,6 @@
-﻿namespace ThirdLabWorkInSixthChapters
+﻿namespace ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants
 {
-    public class NumberVowelsAndConsonants
+    public class VowelsAndConsonants
     {
         private readonly string _path;
         private char[] array;
@@ -11,11 +11,11 @@
             set { array = value; }
         }
 
-        public NumberVowelsAndConsonants()
+        public VowelsAndConsonants()
         {
         }
 
-        public NumberVowelsAndConsonants(string path)
+        public VowelsAndConsonants(string path)
         {
             if (!File.Exists(path))
                 throw new Exception("Файла не существует!!");

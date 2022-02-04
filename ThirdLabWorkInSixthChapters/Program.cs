@@ -31,24 +31,39 @@ LinkedList<LinkedList<T>>.
 строки – названия месяцев, а в качестве значений – массив значений 
 температур по дням*/
 
-using ThirdLabWorkInSixthChapters.Thermometer;
 
-var themp = new Thermometer();
-Console.WriteLine(themp.YearAverageTemperaturee());
-var moth = themp.MonthlyAverageTemperature();
-Print(themp.Temperature);
-PrintAverageTemperatures(moth);
+using ThirdLabWorkInSixthChapters;
+using ThirdLabWorkInSixthChapters.Matrix;
 
-/*var programm = new NumberVowelsAndConsonants(@"C:\Text.txt");
-var value = programm.CountValue();
-Console.WriteLine($"vowels = {value.vowels}; consonants = {value.consonants}");
-
- var first = new int[,] { { 1, 2, 3 }, { 4, 5, 6 } };
+var first = new int[,] { { 1, 2, 3 }, { 4, 5, 6 } };
 var second = new int[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
 Print(first);
 Print(second);
-var multiply = new MatrixMultiplication(first,second);
-multiply.Print(); */
+var multiply = new MatrixMultiplicationLinkedList(first, second);
+var mmmm = new MatrixMultiplicationArray(first, second);
+multiply.Multiplication();
+multiply.Print();
+mmmm.Multiplication();
+mmmm.Print();
+
+/* var themp = new ThermometerDictionary();
+Console.WriteLine(themp.YearAverageTemperaturee());
+var moth = themp.MonthlyAverageTemperature();
+themp.Print();
+PrintAverageTemperatures(moth);
+Console.ReadLine();
+
+var programm = new VowelsAndConsonants(@"C:\Text.txt");
+var value = programm.CountValue();
+Console.WriteLine($"vowels = {value.vowels}; consonants = {value.consonants}");
+
+var first = new int[,] { { 1, 2, 3 }, { 4, 5, 6 } };
+var second = new int[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+Print(first);
+Print(second);
+var multiply = new MatrixMultiplicationArray(first, second);
+multiply.Print();
+*/
 
 void Print(int[,] array)
 {
