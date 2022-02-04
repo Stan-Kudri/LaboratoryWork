@@ -49,5 +49,22 @@
             }
             return yearTemperaturee / (_temperature.GetLength(0) * _temperature.GetLength(1));
         }
+
+        public void PrintAverageTemperatures(int[] averageTemperatures)
+        {
+            Array.Sort(averageTemperatures);
+            for (var i = 0; i < averageTemperatures.Length; i++)
+            {
+                Console.Write($"{averageTemperatures[i]};");
+            }
+        }
+
+        public static void Run()
+        {
+            var thermometer = new Thermometer();
+            Console.WriteLine(thermometer.YearAverageTemperaturee());
+            var mothValue = thermometer.MonthlyAverageTemperature();
+            thermometer.PrintAverageTemperatures(mothValue);
+        }
     }
 }

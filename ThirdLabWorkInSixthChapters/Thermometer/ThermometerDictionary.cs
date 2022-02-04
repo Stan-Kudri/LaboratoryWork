@@ -21,7 +21,7 @@
             }
         }
 
-        public int[] MonthlyAverageTemperature()
+        public Dictionary<string, int> MonthlyAverageTemperature()
         {
             Dictionary<string, int> monthTemperature = new Dictionary<string, int>();
             foreach (var month in _temperature.Keys)
@@ -29,17 +29,35 @@
                 var value = (int)_temperature[month].Average();
                 monthTemperature.Add(month, value);
             }
-            return monthTemperature.Values.ToArray();
+            return monthTemperature;
         }
 
         public int YearAverageTemperaturee() => (int)_temperature.Values.ToArray().Average(x => x.Average());
 
-        public void Print()
+        public void PrintTemperatures()
         {
             foreach (var month in _temperature.Keys)
             {
                 Console.WriteLine($"{month} : {String.Join("; ", _temperature[month])}");
             }
+        }
+
+        public void PrintAverageTemperatures(Dictionary<string, int> avarageMonth)
+        {
+            foreach (var month in avarageMonth.Keys)
+            {
+                Console.WriteLine($"{month} в среднем была температура {avarageMonth[month]}");
+            }
+        }
+
+        public static void Run()
+        {
+            var thermometer = new ThermometerDictionary();
+            Console.WriteLine(thermometer.YearAverageTemperaturee());
+            thermometer.PrintTemperatures();
+            var mothValue = thermometer.MonthlyAverageTemperature();
+            thermometer.PrintAverageTemperatures(mothValue);
+
         }
     }
 }

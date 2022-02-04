@@ -44,5 +44,10 @@
             }
             Console.WriteLine();
         }
+
+        public void Run()
+        {
+
+        }
     }
 }
