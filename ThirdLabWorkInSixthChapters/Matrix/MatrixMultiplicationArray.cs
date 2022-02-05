@@ -4,7 +4,7 @@
 возвращаемое значение – матрица).
 */
 
-namespace ThirdLabWorkInSixthChapters
+namespace ThirdLabWorkInSixthChapters.Matrix
 {
     public class MatrixMultiplicationArray
     {
@@ -14,6 +14,8 @@ namespace ThirdLabWorkInSixthChapters
 
         public MatrixMultiplicationArray(int[,] firstMatrix, int[,] secondMatrix)
         {
+            if (firstMatrix.GetLength(1) + 1 != secondMatrix.GetLength(0) + 1)
+                throw new ArgumentException("Матрицы таких размерностей не перемножить!");
             _firstMatrix = firstMatrix;
             _secondMatrix = secondMatrix;
             _multiplicationMatrix = new int[_firstMatrix.GetLength(0), _secondMatrix.GetLength(1)];
@@ -21,8 +23,6 @@ namespace ThirdLabWorkInSixthChapters
 
         public void Multiplication()
         {
-            if (_firstMatrix.GetLength(1) + 1 != _secondMatrix.GetLength(0) + 1)
-                throw new ArgumentException("Matrices can not be multiplied!");
             for (int i = 0; i < _firstMatrix.GetLength(0); i++)
             {
                 for (int j = 0; j < _secondMatrix.GetLength(1); j++)
@@ -35,21 +35,37 @@ namespace ThirdLabWorkInSixthChapters
             }
         }
 
-        public void Print()
+        public void Print(int[,] matrix)
         {
-            for (int i = 0; i < _multiplicationMatrix.GetLength(0); i++)
+            for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 Console.Write("[");
-                for (int j = 0; j < _multiplicationMatrix.GetLength(1); j++)
+                for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    if (j == _multiplicationMatrix.GetLength(1) - 1)
-                        Console.Write("{0}", _multiplicationMatrix[i, j]);
+                    if (j == matrix.GetLength(1) - 1)
+                        Console.Write("{0}", matrix[i, j]);
                     else
-                        Console.Write("{0},", _multiplicationMatrix[i, j]);
+                        Console.Write("{0},", matrix[i, j]);
                 }
                 Console.WriteLine("]");
             }
             Console.WriteLine();
+        }
+
+        public void Print()
+        {
+            Print(_multiplicationMatrix);
+        }
+
+        public static void Run()
+        {
+            var first = new int[,] { { 1, 2, 3 }, { 4, 5, 6 } };
+            var second = new int[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+            var multiplyMatrix = new MatrixMultiplicationArray(first, second);
+            multiplyMatrix.Print(first);
+            multiplyMatrix.Print(second);
+            multiplyMatrix.Multiplication();
+            multiplyMatrix.Print();
         }
     }
 }

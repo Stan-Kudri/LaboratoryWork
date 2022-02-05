@@ -21,13 +21,7 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
         public Thermometer(int[,] array)
         {
             if (array.GetLength(0) != 12 && array.GetLength(1) != 30)
-                throw new ArgumentException("Массив имеет не верную размерность!");
-            foreach (var t in array)
-            {
-                if (t < -50 || t > 50)
-                    throw new ArgumentException("Температуры такой нет!");
-            }
-            _temperature = new int[12, 30];
+                throw new ArgumentException("Массив имеет не верную размерность, необходим 12х30!");
             _temperature = array;
         }
 
@@ -44,8 +38,6 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
         {
             if (maxTemperature < minTemperature)
                 throw new ArgumentException("Параметры температуры не верны");
-            if (maxTemperature > 50 || minTemperature < -50)
-                throw new ArgumentException("Температуры такой нет!");
             Random random = new Random();
             var temperature = new int[12, 30];
             for (var i = 0; i < temperature.GetLength(0); i++)
@@ -91,7 +83,7 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
             Console.WriteLine("Средняя темпрература по месяцам :{0};", String.Join(",", averageTemperatures));
         }
 
-        public void PrintDay()
+        public void PrintDayTemperature()
         {
             for (int i = 0; i < _temperature.GetLength(0); i++)
             {
@@ -111,7 +103,7 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
         public static void Run()
         {
             var thermometer = new Thermometer(-25, 35);
-            thermometer.PrintDay();
+            thermometer.PrintDayTemperature();
             Console.WriteLine($"Средняя температура за год: {thermometer.YearAverage()}");
             Console.WriteLine();
             var mothValue = thermometer.MonthlyAverage();

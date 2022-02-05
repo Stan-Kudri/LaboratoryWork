@@ -17,6 +17,8 @@ namespace ThirdLabWorkInSixthChapters.Matrix
 
         public MatrixMultiplicationLinkedList(int[,] firstMatrix, int[,] secondMatrix)
         {
+            if (firstMatrix.GetLength(1) + 1 != secondMatrix.GetLength(0) + 1)
+                throw new ArgumentException("Матрицы таких размерностей не перемножить!");
             _firstMatrix = firstMatrix;
             _secondMatrix = secondMatrix;
             _multiplicationMatrix = new LinkedList<LinkedList<int>>();
@@ -24,39 +26,54 @@ namespace ThirdLabWorkInSixthChapters.Matrix
 
         public void Multiplication()
         {
-            if (_firstMatrix.GetLength(1) + 1 != _secondMatrix.GetLength(0) + 1)
-                throw new ArgumentException("Matrices can not be multiplied!");
-            LinkedList<int> list = new();
             for (int i = 0; i < _firstMatrix.GetLength(0); i++)
             {
+                LinkedList<int> line = new();
                 for (int j = 0; j < _secondMatrix.GetLength(1); j++)
                 {
-                    var valueCell = 0;
+                    var product = 0;
                     for (int k = 0; k < _secondMatrix.GetLength(0); k++)
                     {
-                        valueCell += _firstMatrix[i, k] * _secondMatrix[k, j];
+                        product += _firstMatrix[i, k] * _secondMatrix[k, j];
                     }
-                    list.AddLast(valueCell);
+                    line.AddLast(product);
                 }
-                _multiplicationMatrix.AddLast(new LinkedList<int>(list));
-                list.Clear();
-
+                _multiplicationMatrix.AddLast(line);
             }
         }
 
-        public void Print()
+        public void PrintArray(int[,] matrix)
         {
-            foreach (var item in _multiplicationMatrix)
+            for (int i = 0; i < matrix.GetLength(0); i++)
             {
-                Console.WriteLine($"[{String.Join("; ", item.ToArray())}]");
-
+                Console.Write("[");
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    if (j == matrix.GetLength(1) - 1)
+                        Console.Write("{0}", matrix[i, j]);
+                    else
+                        Console.Write("{0},", matrix[i, j]);
+                }
+                Console.WriteLine("]");
             }
             Console.WriteLine();
         }
 
-        public void Run()
+        public void Print()
         {
+            var strRows = _multiplicationMatrix.Select(row => "[" + string.Join(", ", row) + "]");
+            Console.WriteLine(string.Join(Environment.NewLine, strRows));
+        }
 
+        public static void Run()
+        {
+            var first = new int[,] { { 1, 2, 3 }, { 4, 5, 6 } };
+            var second = new int[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
+            var multiplyMatrix = new MatrixMultiplicationLinkedList(first, second);
+            multiplyMatrix.PrintArray(first);
+            multiplyMatrix.PrintArray(second);
+            multiplyMatrix.Multiplication();
+            multiplyMatrix.Print();
         }
     }
 }

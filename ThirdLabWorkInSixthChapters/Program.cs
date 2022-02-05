@@ -32,43 +32,17 @@ LinkedList<LinkedList<T>>.
 температур по дням*/
 
 
+using ThirdLabWorkInSixthChapters.Matrix;
 using ThirdLabWorkInSixthChapters.Thermometer;
 using ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants;
 
 Thermometer.Run();
 ThermometerDictionary.Run();
 VowelsAndConsonants.Run();
+VowelsAndConsonantsList.Run();
+MatrixMultiplicationArray.Run();
+MatrixMultiplicationLinkedList.Run();
 
-
-/*var first = new int[,] { { 1, 2, 3 }, { 4, 5, 6 } };
-var second = new int[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
-Print(first);
-Print(second);
-var multiply = new MatrixMultiplicationLinkedList(first, second);
-var mmmm = new MatrixMultiplicationArray(first, second);
-multiply.Multiplication();
-multiply.Print();
-mmmm.Multiplication();
-mmmm.Print();
-
- var themp = new ThermometerDictionary();
-Console.WriteLine(themp.YearAverageTemperaturee());
-var moth = themp.MonthlyAverageTemperature();
-themp.Print();
-PrintAverageTemperatures(moth);
-Console.ReadLine();
-
-var programm = new VowelsAndConsonants(@"C:\Text.txt");
-var value = programm.CountValue();
-Console.WriteLine($"vowels = {value.vowels}; consonants = {value.consonants}");
-
-var first = new int[,] { { 1, 2, 3 }, { 4, 5, 6 } };
-var second = new int[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
-Print(first);
-Print(second);
-var multiply = new MatrixMultiplicationArray(first, second);
-multiply.Print();
-*/
 
 void Print(int[,] array)
 {
@@ -87,7 +61,7 @@ void Print(int[,] array)
     Console.WriteLine();
 }
 
-void PrintAverageTemperatures(int[] averageTemperatures)
+void PrintSortAverageMonth(int[] averageTemperatures)
 {
     Array.Sort(averageTemperatures);
     for (var i = 0; i < averageTemperatures.Length; i++)

@@ -10,12 +10,13 @@ namespace ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants
 {
     public class VowelsAndConsonants
     {
-        private readonly string _path;
-        private char[] _charOffer;
+        private readonly char[] _analyzeCharacters;
+        private static readonly char[] _vowelsChar = { 'а', 'А', 'и', 'И', 'е', 'Е', 'ё', 'Ё', 'о', 'О', 'у', 'У', 'ы', 'Ы', 'э', 'Э', 'ю', 'Ю', 'я', 'Я' };
+        private static readonly char[] _consonantsChar = { 'б', 'Б', 'в', 'В', 'г', 'Г', 'д', 'Д', 'ж', 'Ж', 'з', 'З', 'й', 'Й', 'к', 'К', 'л', 'Л', 'м', 'М', 'н', 'Н', 'п', 'П', 'р', 'Р', 'с', 'С', 'т', 'Т', 'ф', 'Ф', 'х', 'Х', 'ц', 'Ц', 'ч', 'Ч', 'ш', 'Ш', 'щ', 'Щ' };
 
-        public VowelsAndConsonants(char[] charOffer)
+        public VowelsAndConsonants(char[] _analyzeCharacters)
         {
-            _charOffer = charOffer ?? throw new ArgumentNullException(nameof(charOffer));
+            this._analyzeCharacters = _analyzeCharacters ?? throw new ArgumentNullException(nameof(_analyzeCharacters));
         }
 
         public VowelsAndConsonants(string path) : this(ReadFileContent(path))
@@ -26,26 +27,27 @@ namespace ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants
         {
             if (!File.Exists(path))
                 throw new Exception("Файла не существует!!");
-            return new StreamReader(path).ReadToEnd().ToCharArray();
+            using (StreamReader streamReader = new StreamReader(path))
+            {
+                return streamReader.ReadToEnd().ToCharArray();
+            }
         }
 
         public (int vowels, int consonants) CountValue(char[] arrayChar)
         {
-            char[] vowelsChar = new char[] { 'а', 'и', 'е', 'ё', 'о', 'у', 'ы', 'э', 'ю', 'я' };
-            char[] consonantsChar = new char[] { 'б', 'в', 'г', 'д', 'ж', 'з', 'й', 'к', 'л', 'м', 'н', 'п', 'р', 'с', 'т', 'ф', 'х', 'ц', 'ч', 'ш', 'щ' };
             int valueVowels = 0;
             int valueConsonants = 0;
             for (int i = 0; i < arrayChar.Length; i++)
             {
-                if (vowelsChar.Any(x => x == arrayChar[i]))
+                if (_vowelsChar.Any(x => x == arrayChar[i]))
                     valueVowels++;
-                if (consonantsChar.Any(x => x == arrayChar[i]))
+                else if (_consonantsChar.Any(x => x == arrayChar[i]))
                     valueConsonants++;
             }
             return (valueVowels, valueConsonants);
         }
 
-        public (int vowels, int consonants) CountValue() => CountValue(_charOffer);
+        public (int vowels, int consonants) CountValue() => CountValue(_analyzeCharacters);
 
         public static void Run()
         {
