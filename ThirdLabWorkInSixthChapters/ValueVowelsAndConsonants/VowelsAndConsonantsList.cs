@@ -1,9 +1,20 @@
-﻿namespace ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants
+﻿/*Упражнение 6.1 Написать программу, которая вычисляет число гласных 
+и согласных букв в файле. Имя файла передавать как аргумент в функцию 
+Main. Содержимое текстового файла заносится в массив символов. Количество 
+гласных и согласных букв определяется проходом по массиву. Предусмотреть 
+метод, входным параметром которого является массив символов. Метод 
+вычисляет количество гласных и согласных букв. 
+
+Домашнее задание 6.1 Упражнение 6.1 выполнить с помощью коллекции 
+List<T>.
+*/
+
+namespace ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants
 {
     public class VowelsAndConsonantsList
     {
         private readonly string _path;
-        private List<char> list;
+        private List<char> _charOffer;
 
         public VowelsAndConsonantsList()
         {
@@ -39,7 +50,7 @@
             char[] consonantsChar = new char[] { 'б', 'в', 'г', 'д', 'ж', 'з', 'й', 'к', 'л', 'м', 'н', 'п', 'р', 'с', 'т', 'ф', 'х', 'ц', 'ч', 'ш', 'щ' };
             int valueVowels = 0;
             int valueConsonants = 0;
-            foreach (char letter in list)
+            foreach (char letter in _charOffer)
             {
                 if (vowelsChar.Any(x => x == letter))
                     valueVowels++;
@@ -59,6 +70,6 @@
             }
         }
 
-        private void RecordingCharFrom() => list = FileDataLine().ToList();
+        private void RecordingCharFrom() => _charOffer = FileDataLine().ToList();
     }
 }

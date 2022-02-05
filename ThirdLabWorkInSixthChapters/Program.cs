@@ -32,10 +32,11 @@ LinkedList<LinkedList<T>>.
 температур по дням*/
 
 
-using ThirdLabWorkInSixthChapters;
-using ThirdLabWorkInSixthChapters.Matrix;
+using ThirdLabWorkInSixthChapters.Thermometer;
 
-var first = new int[,] { { 1, 2, 3 }, { 4, 5, 6 } };
+Thermometer.Run();
+
+/*var first = new int[,] { { 1, 2, 3 }, { 4, 5, 6 } };
 var second = new int[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
 Print(first);
 Print(second);
@@ -46,7 +47,7 @@ multiply.Print();
 mmmm.Multiplication();
 mmmm.Print();
 
-/* var themp = new ThermometerDictionary();
+ var themp = new ThermometerDictionary();
 Console.WriteLine(themp.YearAverageTemperaturee());
 var moth = themp.MonthlyAverageTemperature();
 themp.Print();

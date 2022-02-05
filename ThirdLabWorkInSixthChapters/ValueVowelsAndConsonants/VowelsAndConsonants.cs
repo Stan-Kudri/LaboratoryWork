@@ -1,18 +1,21 @@
-﻿namespace ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants
+﻿/*Упражнение 6.1 Написать программу, которая вычисляет число гласных 
+и согласных букв в файле. Имя файла передавать как аргумент в функцию 
+Main. Содержимое текстового файла заносится в массив символов. Количество 
+гласных и согласных букв определяется проходом по массиву. Предусмотреть 
+метод, входным параметром которого является массив символов. Метод 
+вычисляет количество гласных и согласных букв. 
+*/
+
+namespace ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants
 {
     public class VowelsAndConsonants
     {
         private readonly string _path;
-        private char[] array;
+        private char[] _charOffer;
 
-        public char[] Array
+        public VowelsAndConsonants(char[] charOffer)
         {
-            get { return array; }
-            set { array = value; }
-        }
-
-        public VowelsAndConsonants()
-        {
+            _charOffer = charOffer;
         }
 
         public VowelsAndConsonants(string path)
@@ -20,7 +23,6 @@
             if (!File.Exists(path))
                 throw new Exception("Файла не существует!!");
             _path = path;
-            RecordingCharFrom();
         }
 
         public (int vowels, int consonants) CountValue(char[] arrayChar)
@@ -45,13 +47,13 @@
             char[] consonantsChar = new char[] { 'б', 'в', 'г', 'д', 'ж', 'з', 'й', 'к', 'л', 'м', 'н', 'п', 'р', 'с', 'т', 'ф', 'х', 'ц', 'ч', 'ш', 'щ' };
             int valueVowels = 0;
             int valueConsonants = 0;
-            for (int i = 0; i < array.Length; i++)
+            for (int i = 0; i < _charOffer.Length; i++)
             {
-                if (vowelsChar.Any(x => x == array[i]))
+                if (vowelsChar.Any(x => x == _charOffer[i]))
                 {
                     valueVowels++;
                 }
-                if (consonantsChar.Any(x => x == array[i]))
+                if (consonantsChar.Any(x => x == _charOffer[i]))
                 {
                     valueConsonants++;
                 }
@@ -65,10 +67,16 @@
                 throw new Exception("Путь не установлен");
             using (StreamReader str = new StreamReader(_path))
             {
+                _charOffer = str.ReadToEnd().ToCharArray();
                 return str.ReadToEnd();
             }
         }
 
-        private void RecordingCharFrom() => array = FileDataLine().ToCharArray();
+        private static char[] ReadFileContent(string path)
+        {
+            if (!File.Exists(path))
+                throw new Exception("Файла не существует!!");
+            return new StreamReader(path).ReadToEnd().ToCharArray();
+        }
     }
 }

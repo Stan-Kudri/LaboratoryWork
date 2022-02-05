@@ -1,22 +1,39 @@
-﻿namespace ThirdLabWorkInSixthChapters.Thermometer
+﻿/*
+Упражнение 6.3 Написать программу, вычисляющую среднюю 
+температуру за год. Создать двумерный рандомный массив temperature[12,30], в
+котором будет храниться температура для каждого дня месяца (предполагается,
+что в каждом месяце 30 дней). Сгенерировать значения температур случайным 
+образом. Для каждого месяца распечатать среднюю температуру. Для этого 
+написать метод, который по массиву temperature [12,30] для каждого месяца 
+вычисляет среднюю температуру в нем, и в качестве результата возвращает 
+массив средних температур. Полученный массив средних температур 
+отсортировать по возрастанию.
+
+
+Домашнее задание 6.3 Написать программу для упражнения 6.3,
+использовав класс Dictionary<TKey, TValue>. В качестве ключей выбрать 
+строки – названия месяцев, а в качестве значений – массив значений 
+температур по дням*/
+
+namespace ThirdLabWorkInSixthChapters.Thermometer
 {
     public class ThermometerDictionary
     {
         private readonly Dictionary<string, int[]> _temperature;
-        private readonly string[] month = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
+        private readonly string[] _month = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
 
         public ThermometerDictionary()
         {
             Random random = new Random();
             _temperature = new Dictionary<string, int[]>();
             int[] dayTemperature = new int[30];
-            for (var i = 0; i < month.Length; i++)
+            for (var i = 0; i < _month.Length; i++)
             {
                 for (var j = 0; j < dayTemperature.Length; j++)
                 {
                     dayTemperature[j] = random.Next(-25, 25);
                 }
-                _temperature.Add(month[i], dayTemperature);
+                _temperature.Add(_month[i], dayTemperature);
                 dayTemperature = new int[dayTemperature.Length];
             }
         }
