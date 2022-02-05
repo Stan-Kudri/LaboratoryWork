@@ -15,14 +15,18 @@ namespace ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants
 
         public VowelsAndConsonants(char[] charOffer)
         {
-            _charOffer = charOffer;
+            _charOffer = charOffer ?? throw new ArgumentNullException(nameof(charOffer));
         }
 
-        public VowelsAndConsonants(string path)
+        public VowelsAndConsonants(string path) : this(ReadFileContent(path))
+        {
+        }
+
+        private static char[] ReadFileContent(string path)
         {
             if (!File.Exists(path))
                 throw new Exception("Файла не существует!!");
-            _path = path;
+            return new StreamReader(path).ReadToEnd().ToCharArray();
         }
 
         public (int vowels, int consonants) CountValue(char[] arrayChar)
@@ -41,42 +45,13 @@ namespace ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants
             return (valueVowels, valueConsonants);
         }
 
-        public (int vowels, int consonants) CountValue()
-        {
-            char[] vowelsChar = new char[] { 'а', 'и', 'е', 'ё', 'о', 'у', 'ы', 'э', 'ю', 'я' };
-            char[] consonantsChar = new char[] { 'б', 'в', 'г', 'д', 'ж', 'з', 'й', 'к', 'л', 'м', 'н', 'п', 'р', 'с', 'т', 'ф', 'х', 'ц', 'ч', 'ш', 'щ' };
-            int valueVowels = 0;
-            int valueConsonants = 0;
-            for (int i = 0; i < _charOffer.Length; i++)
-            {
-                if (vowelsChar.Any(x => x == _charOffer[i]))
-                {
-                    valueVowels++;
-                }
-                if (consonantsChar.Any(x => x == _charOffer[i]))
-                {
-                    valueConsonants++;
-                }
-            }
-            return (valueVowels, valueConsonants);
-        }
+        public (int vowels, int consonants) CountValue() => CountValue(_charOffer);
 
-        private string FileDataLine()
+        public static void Run()
         {
-            if (_path == null)
-                throw new Exception("Путь не установлен");
-            using (StreamReader str = new StreamReader(_path))
-            {
-                _charOffer = str.ReadToEnd().ToCharArray();
-                return str.ReadToEnd();
-            }
-        }
-
-        private static char[] ReadFileContent(string path)
-        {
-            if (!File.Exists(path))
-                throw new Exception("Файла не существует!!");
-            return new StreamReader(path).ReadToEnd().ToCharArray();
+            var vowelsAndConsonants = new VowelsAndConsonants(@"C:\Text.txt");
+            var typel = vowelsAndConsonants.CountValue();
+            Console.WriteLine($"vowels = {typel.vowels}; consonants = {typel.consonants}");
         }
     }
 }

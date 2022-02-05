@@ -33,9 +33,11 @@ LinkedList<LinkedList<T>>.
 
 
 using ThirdLabWorkInSixthChapters.Thermometer;
+using ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants;
 
 Thermometer.Run();
 ThermometerDictionary.Run();
+VowelsAndConsonants.Run();
 
 
 /*var first = new int[,] { { 1, 2, 3 }, { 4, 5, 6 } };
