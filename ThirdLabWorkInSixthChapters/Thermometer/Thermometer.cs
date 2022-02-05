@@ -22,11 +22,16 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
         {
             if (array.GetLength(0) != 12 && array.GetLength(1) != 30)
                 throw new ArgumentException("Массив имеет не верную размерность!");
+            foreach (var t in array)
+            {
+                if (t < -50 || t > 50)
+                    throw new ArgumentException("Температуры такой нет!");
+            }
             _temperature = new int[12, 30];
             _temperature = array;
         }
 
-        public Thermometer(int maxTemperature, int minTemperature) : this(CreateRandom(minTemperature, maxTemperature))
+        public Thermometer(int minTemperature, int maxTemperature) : this(CreateRandom(minTemperature, maxTemperature))
         {
         }
 
@@ -81,13 +86,9 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
             return yearTemperaturee / (_temperature.GetLength(0) * _temperature.GetLength(1));
         }
 
-        public void PrintAverageЬMonth(int[] averageTemperatures)
+        public void PrintAverageMonth(int[] averageTemperatures)
         {
-            Array.Sort(averageTemperatures);
-            for (var i = 0; i < averageTemperatures.Length; i++)
-            {
-                Console.Write($"{averageTemperatures[i]};");
-            }
+            Console.WriteLine("Средняя темпрература по месяцам :{0};", String.Join(",", averageTemperatures));
         }
 
         public void PrintDay()
@@ -111,9 +112,11 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
         {
             var thermometer = new Thermometer(-25, 35);
             thermometer.PrintDay();
-            Console.WriteLine(thermometer.YearAverage());
+            Console.WriteLine($"Средняя температура за год: {thermometer.YearAverage()}");
+            Console.WriteLine();
             var mothValue = thermometer.MonthlyAverage();
-            thermometer.PrintAverageЬMonth(mothValue);
+            thermometer.PrintAverageMonth(mothValue);
+            Console.WriteLine();
         }
     }
 }
