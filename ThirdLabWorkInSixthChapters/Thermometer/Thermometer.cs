@@ -53,7 +53,7 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
             return temperature;
         }
 
-        public int[] MonthlyAverageTemperature()
+        public int[] MonthlyAverage()
         {
             int[] monthlyTemperature = new int[_temperature.GetLength(0)];
             for (var i = 0; i < _temperature.GetLength(0); i++)
@@ -68,7 +68,7 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
             return monthlyTemperature;
         }
 
-        public int YearAverageTemperaturee()
+        public int YearAverage()
         {
             var yearTemperaturee = 0;
             for (var i = 0; i < _temperature.GetLength(0); i++)
@@ -81,7 +81,7 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
             return yearTemperaturee / (_temperature.GetLength(0) * _temperature.GetLength(1));
         }
 
-        public void PrintAverageTemperatures(int[] averageTemperatures)
+        public void PrintAverageЬMonth(int[] averageTemperatures)
         {
             Array.Sort(averageTemperatures);
             for (var i = 0; i < averageTemperatures.Length; i++)
@@ -90,7 +90,7 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
             }
         }
 
-        public void Print()
+        public void PrintDay()
         {
             for (int i = 0; i < _temperature.GetLength(0); i++)
             {
@@ -110,10 +110,10 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
         public static void Run()
         {
             var thermometer = new Thermometer(-25, 35);
-            thermometer.Print();
-            Console.WriteLine(thermometer.YearAverageTemperaturee());
-            var mothValue = thermometer.MonthlyAverageTemperature();
-            thermometer.PrintAverageTemperatures(mothValue);
+            thermometer.PrintDay();
+            Console.WriteLine(thermometer.YearAverage());
+            var mothValue = thermometer.MonthlyAverage();
+            thermometer.PrintAverageЬMonth(mothValue);
         }
     }
 }
