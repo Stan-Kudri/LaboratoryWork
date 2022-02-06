@@ -40,9 +40,13 @@ namespace ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants
             for (int i = 0; i < arrayChar.Length; i++)
             {
                 if (_vowelsChar.Any(x => x == arrayChar[i]))
+                {
                     valueVowels++;
+                }
                 else if (_consonantsChar.Any(x => x == arrayChar[i]))
+                {
                     valueConsonants++;
+                }
             }
             return (valueVowels, valueConsonants);
         }

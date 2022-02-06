@@ -9,22 +9,16 @@ LinkedList<LinkedList<T>>.
 
 namespace ThirdLabWorkInSixthChapters.Matrix
 {
-    public class MatrixMultiplicationLinkedList
+    public class MatrixMultiplicationLinkedList : Matrix
     {
-        private readonly int[,] _firstMatrix;
-        private readonly int[,] _secondMatrix;
         private LinkedList<LinkedList<int>> _multiplicationMatrix;
 
-        public MatrixMultiplicationLinkedList(int[,] firstMatrix, int[,] secondMatrix)
+        public MatrixMultiplicationLinkedList(int[,] firstMatrix, int[,] secondMatrix) : base(firstMatrix, secondMatrix)
         {
-            if (firstMatrix.GetLength(1) + 1 != secondMatrix.GetLength(0) + 1)
-                throw new ArgumentException("Матрицы таких размерностей не перемножить!");
-            _firstMatrix = firstMatrix;
-            _secondMatrix = secondMatrix;
             _multiplicationMatrix = new LinkedList<LinkedList<int>>();
         }
 
-        public void Multiplication()
+        public override void Multiplication()
         {
             for (int i = 0; i < _firstMatrix.GetLength(0); i++)
             {
@@ -42,23 +36,6 @@ namespace ThirdLabWorkInSixthChapters.Matrix
             }
         }
 
-        public void PrintArray(int[,] matrix)
-        {
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                Console.Write("[");
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    if (j == matrix.GetLength(1) - 1)
-                        Console.Write("{0}", matrix[i, j]);
-                    else
-                        Console.Write("{0},", matrix[i, j]);
-                }
-                Console.WriteLine("]");
-            }
-            Console.WriteLine();
-        }
-
         public void Print()
         {
             var strRows = _multiplicationMatrix.Select(row => "[" + string.Join(", ", row) + "]");
@@ -70,8 +47,8 @@ namespace ThirdLabWorkInSixthChapters.Matrix
             var first = new int[,] { { 1, 2, 3 }, { 4, 5, 6 } };
             var second = new int[,] { { 1, 2 }, { 3, 4 }, { 5, 6 } };
             var multiplyMatrix = new MatrixMultiplicationLinkedList(first, second);
-            multiplyMatrix.PrintArray(first);
-            multiplyMatrix.PrintArray(second);
+            MatrixMultiplicationLinkedList.PrintArray(first);
+            MatrixMultiplicationLinkedList.PrintArray(second);
             multiplyMatrix.Multiplication();
             multiplyMatrix.Print();
         }

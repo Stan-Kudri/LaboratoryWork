@@ -35,9 +35,13 @@ namespace ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants
             foreach (char letter in listChar)
             {
                 if (_vowelsChar.Any(x => char.ToLower(x) == letter))
+                {
                     valueVowels++;
+                }
                 else if (_consonantsChar.Any(x => char.ToLower(x) == letter))
+                {
                     valueConsonants++;
+                }
             }
             return (valueVowels, valueConsonants);
         }

@@ -26,17 +26,7 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
         {
             if (array.GetLength(0) != 12 && array.GetLength(1) != 30)
                 throw new ArgumentException("Массив имеет не верную размерность, необходим 12х30!");
-            _temperature = new Dictionary<string, int[]>();
-            int[] dayTemperature = new int[30];
-            for (var i = 0; i < _month.Length; i++)
-            {
-                for (var j = 0; j < dayTemperature.Length; j++)
-                {
-                    dayTemperature[j] = array[i, j];
-                }
-                _temperature.Add(_month[i], dayTemperature);
-                dayTemperature = new int[dayTemperature.Length];
-            }
+            _temperature = TeperatureDictionary(array);
         }
 
         public ThermometerDictionary(int minTemperature, int maxTemperature) : this(CreateRandom(minTemperature, maxTemperature))
@@ -64,6 +54,21 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
             return temperature;
         }
 
+        private static Dictionary<string, int[]> TeperatureDictionary(int[,] array)
+        {
+            var temperature = new Dictionary<string, int[]>();
+            int[] dayTemperature = new int[30];
+            for (var i = 0; i < _month.Length; i++)
+            {
+                for (var j = 0; j < dayTemperature.Length; j++)
+                {
+                    dayTemperature[j] = array[i, j];
+                }
+                temperature.Add(_month[i], dayTemperature);
+                dayTemperature = new int[dayTemperature.Length];
+            }
+            return temperature;
+        }
         public int[] MonthlyAverage()
         {
             var monthTemperature = new int[12];
