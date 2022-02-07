@@ -24,11 +24,6 @@ namespace ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants
         {
         }
 
-        public (int vowels, int consonants) CountValue(List<char> listChar)
-        {
-            return base.CountValue(listChar);
-        }
-
         public (int vowels, int consonants) CountValue() => CountValue(_analyzeCharacters);
 
         public static void Run()
