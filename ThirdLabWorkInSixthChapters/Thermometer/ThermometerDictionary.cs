@@ -17,15 +17,13 @@
 
 namespace ThirdLabWorkInSixthChapters.Thermometer
 {
-    public class ThermometerDictionary
+    public class ThermometerDictionary : Thermometer
     {
         private readonly Dictionary<string, int[]> _temperature;
         private static readonly string[] _month = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
 
-        public ThermometerDictionary(int[,] array)
+        public ThermometerDictionary(int[,] array) : base(array)
         {
-            if (array.GetLength(0) != 12 && array.GetLength(1) != 30)
-                throw new ArgumentException("Массив имеет не верную размерность, необходим 12х30!");
             _temperature = TeperatureDictionary(array);
         }
 
@@ -35,23 +33,6 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
 
         public ThermometerDictionary() : this(-25, 35)
         {
-
-        }
-
-        private static int[,] CreateRandom(int minTemperature, int maxTemperature)
-        {
-            if (maxTemperature < minTemperature)
-                throw new ArgumentException("Параметры температуры не верны");
-            Random random = new Random();
-            var temperature = new int[12, 30];
-            for (var i = 0; i < temperature.GetLength(0); i++)
-            {
-                for (var j = 0; j < temperature.GetLength(1); j++)
-                {
-                    temperature[i, j] = random.Next(minTemperature, maxTemperature);
-                }
-            }
-            return temperature;
         }
 
         private static Dictionary<string, int[]> TeperatureDictionary(int[,] array)
@@ -69,6 +50,7 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
             }
             return temperature;
         }
+
         public int[] MonthlyAverage()
         {
             var monthTemperature = new int[12];
@@ -101,9 +83,9 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
         public static void Run()
         {
             var thermometer = new ThermometerDictionary();
+            thermometer.PrintTemperatures();
             Console.WriteLine($"Средняя температура за год: {thermometer.YearAverage()}");
             Console.WriteLine();
-            thermometer.PrintTemperatures();
             var mothValue = thermometer.MonthlyAverage();
             PrintAverageMonth(mothValue);
             Console.WriteLine();

@@ -36,9 +36,9 @@ using ThirdLabWorkInSixthChapters.Matrix;
 using ThirdLabWorkInSixthChapters.Thermometer;
 using ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants;
 
-Thermometer.Run();
+ThermometerArray.Run();
 ThermometerDictionary.Run();
-VowelsAndConsonants.Run();
+VowelsAndConsonantsArray.Run();
 VowelsAndConsonantsList.Run();
 MatrixMultiplicationArray.Run();
 MatrixMultiplicationLinkedList.Run();
@@ -61,9 +61,8 @@ void Print(int[,] array)
     Console.WriteLine();
 }
 
-void PrintSortAverageMonth(int[] averageTemperatures)
+void PrintAverageMonth(int[] averageTemperatures)
 {
-    Array.Sort(averageTemperatures);
     for (var i = 0; i < averageTemperatures.Length; i++)
     {
         Console.Write($"{averageTemperatures[i]};");

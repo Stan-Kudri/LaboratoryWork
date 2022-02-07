@@ -4,29 +4,26 @@ Main. Содержимое текстового файла заносится в
 гласных и согласных букв определяется проходом по массиву. Предусмотреть 
 метод, входным параметром которого является массив символов. Метод 
 вычисляет количество гласных и согласных букв. 
-
-Домашнее задание 6.1 Упражнение 6.1 выполнить с помощью коллекции 
-List<T>.
 */
 
 namespace ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants
 {
-    public class VowelsAndConsonantsList : VowelsAndConsonants
+    public class VowelsAndConsonantsArray : VowelsAndConsonants
     {
-        private readonly List<char> _analyzeCharacters;
+        private readonly char[] _analyzeCharacters;
 
-        public VowelsAndConsonantsList(char[] analyzeCharacters) : base(analyzeCharacters)
+        public VowelsAndConsonantsArray(char[] analyzeCharacters) : base(analyzeCharacters)
         {
-            _analyzeCharacters = new List<char>(analyzeCharacters);
+            _analyzeCharacters = analyzeCharacters;
         }
 
-        public VowelsAndConsonantsList(string path) : this(ReadFileContent(path))
+        public VowelsAndConsonantsArray(string path) : this(ReadFileContent(path))
         {
         }
 
-        public (int vowels, int consonants) CountValue(List<char> listChar)
+        public (int vowels, int consonants) CountValue(char[] arrayChar)
         {
-            return base.CountValue(listChar);
+            return CountValue(new List<char>(arrayChar));
         }
 
         public (int vowels, int consonants) CountValue() => CountValue(_analyzeCharacters);
