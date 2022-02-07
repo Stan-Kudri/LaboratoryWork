@@ -27,5 +27,10 @@
             }
             return temperature;
         }
+
+        protected static void PrintAverageMonth(int[] averageTemperatures)
+        {
+            Console.WriteLine("Средняя темпрература по месяцам :{0};", String.Join(",", averageTemperatures));
+        }
     }
 }

@@ -16,8 +16,6 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
     {
         private readonly int[,] _temperature;
 
-        public int[,] Temperature => _temperature;
-
         public ThermometerArray(int[,] array) : base(array)
         {
             _temperature = array;
@@ -59,11 +57,6 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
             return yearTemperaturee / (_temperature.GetLength(0) * _temperature.GetLength(1));
         }
 
-        public void PrintAverageMonth(int[] averageTemperatures)
-        {
-            Console.WriteLine("Средняя темпрература по месяцам :{0};", String.Join(",", averageTemperatures));
-        }
-
         public void PrintDayTemperature()
         {
             for (int i = 0; i < _temperature.GetLength(0); i++)
@@ -88,7 +81,7 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
             Console.WriteLine($"Средняя температура за год: {thermometer.YearAverage()}");
             Console.WriteLine();
             var mothValue = thermometer.MonthlyAverage();
-            thermometer.PrintAverageMonth(mothValue);
+            PrintAverageMonth(mothValue);
             Console.WriteLine();
         }
     }

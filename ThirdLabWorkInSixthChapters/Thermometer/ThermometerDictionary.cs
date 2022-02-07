@@ -71,15 +71,6 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
             }
         }
 
-        private static void PrintAverageMonth(int[] avarageMonth)
-        {
-
-            for (var i = 0; i < avarageMonth.Length; i++)
-            {
-                Console.WriteLine($"{_month[i]} в среднем была температура {avarageMonth[i]}");
-            }
-        }
-
         public static void Run()
         {
             var thermometer = new ThermometerDictionary();
