@@ -1,6 +1,6 @@
 ﻿namespace ThirdLabWorkInSixthChapters.Matrix
 {
-    public class Matrix
+    public abstract class Matrix
     {
         protected readonly int[,] _firstMatrix;
         protected readonly int[,] _secondMatrix;
@@ -13,9 +13,8 @@
             _secondMatrix = secondMatrix;
         }
 
-        public virtual void Multiplication()
-        {
-        }
+        public abstract void Print();
+        public abstract void Multiplication();
 
         protected static void PrintArray(int[,] matrix)
         {
@@ -33,5 +32,6 @@
             }
             Console.WriteLine();
         }
+
     }
 }

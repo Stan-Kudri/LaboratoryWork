@@ -29,7 +29,7 @@ namespace ThirdLabWorkInSixthChapters.Matrix
             }
         }
 
-        public void Print()
+        public override void Print()
         {
             PrintArray(_multiplicationMatrix);
         }

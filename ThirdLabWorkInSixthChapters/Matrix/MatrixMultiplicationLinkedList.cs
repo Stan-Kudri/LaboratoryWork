@@ -36,7 +36,7 @@ namespace ThirdLabWorkInSixthChapters.Matrix
             }
         }
 
-        public void Print()
+        public override void Print()
         {
             var strRows = _multiplicationMatrix.Select(row => "[" + string.Join(", ", row) + "]");
             Console.WriteLine(string.Join(Environment.NewLine, strRows));
