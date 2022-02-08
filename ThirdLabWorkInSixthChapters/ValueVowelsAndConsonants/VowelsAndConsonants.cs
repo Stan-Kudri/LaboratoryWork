@@ -11,10 +11,6 @@
                 throw new ArgumentNullException(nameof(analyzeCharacters));
         }
 
-        public VowelsAndConsonants(string path) : this(ReadFileContent(path))
-        {
-        }
-
         protected static char[] ReadFileContent(string path)
         {
             if (!File.Exists(path))
@@ -25,7 +21,7 @@
             }
         }
 
-        public (int vowels, int consonants) CountValue(List<char> listChar)
+        protected static (int vowels, int consonants) CountValue(List<char> listChar)
         {
             int valueVowels = 0;
             int valueConsonants = 0;
@@ -41,6 +37,11 @@
                 }
             }
             return (valueVowels, valueConsonants);
+        }
+
+        protected static (int vowels, int consonants) CountValue(char[] array)
+        {
+            return CountValue(new List<char>(array));
         }
     }
 }

@@ -21,17 +21,12 @@ namespace ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants
         {
         }
 
-        public (int vowels, int consonants) CountValue(char[] arrayChar)
-        {
-            return CountValue(new List<char>(arrayChar));
-        }
-
-        public (int vowels, int consonants) CountValue() => CountValue(_analyzeCharacters);
+        //public (int vowels, int consonants) Value() => CountValue(_analyzeCharacters);
 
         public static void Run()
         {
             var vowelsAndConsonants = new VowelsAndConsonantsArray(@"C:\Text.txt");
-            var typel = vowelsAndConsonants.CountValue();
+            var typel = CountValue(vowelsAndConsonants._analyzeCharacters);
             Console.WriteLine($"vowels = {typel.vowels}; consonants = {typel.consonants}");
         }
     }

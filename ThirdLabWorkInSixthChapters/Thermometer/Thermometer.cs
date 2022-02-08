@@ -8,10 +8,6 @@
                 throw new ArgumentException("Массив имеет не верную размерность, необходим 12х30!");
         }
 
-        public Thermometer(int minTemperature, int maxTemperature) : this(CreateRandom(minTemperature, maxTemperature))
-        {
-        }
-
         protected static int[,] CreateRandom(int minTemperature, int maxTemperature)
         {
             if (maxTemperature < minTemperature)
