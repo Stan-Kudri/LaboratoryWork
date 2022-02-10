@@ -14,11 +14,12 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
 {
     public class ThermometerArray : Thermometer
     {
-        private readonly int[,] _temperature;
+        private readonly int[,] _calendarTemperature;
 
-        public ThermometerArray(int[,] array) : base(array)
+        public ThermometerArray(int[,] calendarTemperature)
         {
-            _temperature = array;
+            ValidateSizeCalendar(calendarTemperature);
+            _calendarTemperature = calendarTemperature;
         }
 
         public ThermometerArray(int minTemperature, int maxTemperature) : this(CreateRandom(minTemperature, maxTemperature))
@@ -29,45 +30,45 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
         {
         }
 
-        public int[] MonthlyAverage()
+        public override int[] MonthlyAverage()
         {
-            var monthlyTemperature = new int[_temperature.GetLength(0)];
-            for (var i = 0; i < _temperature.GetLength(0); i++)
+            var monthlyTemperature = new int[_calendarTemperature.GetLength(0)];
+            for (var i = 0; i < _calendarTemperature.GetLength(0); i++)
             {
                 monthlyTemperature[i] = 0;
-                for (var j = 0; j < _temperature.GetLength(1); j++)
+                for (var j = 0; j < _calendarTemperature.GetLength(1); j++)
                 {
-                    monthlyTemperature[i] += _temperature[i, j];
+                    monthlyTemperature[i] += _calendarTemperature[i, j];
                 }
-                monthlyTemperature[i] = monthlyTemperature[i] / _temperature.GetLength(1);
+                monthlyTemperature[i] = monthlyTemperature[i] / _calendarTemperature.GetLength(1);
             }
             return monthlyTemperature;
         }
 
-        public int YearAverage()
+        public override int YearAverage()
         {
             var yearTemperaturee = 0;
-            for (var i = 0; i < _temperature.GetLength(0); i++)
+            for (var i = 0; i < _calendarTemperature.GetLength(0); i++)
             {
-                for (var j = 0; j < _temperature.GetLength(1); j++)
+                for (var j = 0; j < _calendarTemperature.GetLength(1); j++)
                 {
-                    yearTemperaturee += _temperature[i, j];
+                    yearTemperaturee += _calendarTemperature[i, j];
                 }
             }
-            return yearTemperaturee / (_temperature.GetLength(0) * _temperature.GetLength(1));
+            return yearTemperaturee / (_calendarTemperature.GetLength(0) * _calendarTemperature.GetLength(1));
         }
 
-        public void PrintDayTemperature()
+        public override void PrintTemperatures()
         {
-            for (int i = 0; i < _temperature.GetLength(0); i++)
+            for (int i = 0; i < _calendarTemperature.GetLength(0); i++)
             {
                 Console.Write("[");
-                for (int j = 0; j < _temperature.GetLength(1); j++)
+                for (int j = 0; j < _calendarTemperature.GetLength(1); j++)
                 {
-                    if (j == _temperature.GetLength(1) - 1)
-                        Console.Write("{0}", _temperature[i, j]);
+                    if (j == _calendarTemperature.GetLength(1) - 1)
+                        Console.Write("{0}", _calendarTemperature[i, j]);
                     else
-                        Console.Write("{0},", _temperature[i, j]);
+                        Console.Write("{0},", _calendarTemperature[i, j]);
                 }
                 Console.WriteLine("]");
             }
@@ -77,7 +78,7 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
         public static void Run()
         {
             var thermometer = new ThermometerArray();
-            thermometer.PrintDayTemperature();
+            thermometer.PrintTemperatures();
             Console.WriteLine($"Средняя температура за год: {thermometer.YearAverage()}");
             Console.WriteLine();
             var mothValue = thermometer.MonthlyAverage();

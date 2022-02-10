@@ -19,12 +19,13 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
 {
     public class ThermometerDictionary : Thermometer
     {
-        private readonly Dictionary<string, int[]> _temperature;
+        private readonly Dictionary<string, int[]> _calendarTemperature;
         private static readonly string[] _month = { "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь" };
 
-        public ThermometerDictionary(int[,] array) : base(array)
+        public ThermometerDictionary(int[,] calendarTemperature)
         {
-            _temperature = TeperatureDictionary(array);
+            ValidateSizeCalendar(calendarTemperature);
+            _calendarTemperature = TeperatureDictionary(calendarTemperature);
         }
 
         public ThermometerDictionary(int minTemperature, int maxTemperature) : this(CreateRandom(minTemperature, maxTemperature))
@@ -35,7 +36,7 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
         {
         }
 
-        private static Dictionary<string, int[]> TeperatureDictionary(int[,] array)
+        private static Dictionary<string, int[]> TeperatureDictionary(int[,] calendarTemperature)
         {
             var temperature = new Dictionary<string, int[]>();
             int[] dayTemperature = new int[30];
@@ -43,7 +44,7 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
             {
                 for (var j = 0; j < dayTemperature.Length; j++)
                 {
-                    dayTemperature[j] = array[i, j];
+                    dayTemperature[j] = calendarTemperature[i, j];
                 }
                 temperature.Add(_month[i], dayTemperature);
                 dayTemperature = new int[dayTemperature.Length];
@@ -51,23 +52,23 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
             return temperature;
         }
 
-        public int[] MonthlyAverage()
+        public override int[] MonthlyAverage()
         {
-            var monthTemperature = new int[12];
+            var monthTemperature = new int[_month.Length];
             for (var i = 0; i < monthTemperature.Length; i++)
             {
-                monthTemperature[i] = (int)_temperature.ElementAt(i).Value.Average();
+                monthTemperature[i] = (int)_calendarTemperature[_month[i]].Average();
             }
             return monthTemperature;
         }
 
-        public int YearAverage() => (int)_temperature.Values.Average(x => x.Average());
+        public override int YearAverage() => (int)_calendarTemperature.Values.Average(x => x.Average());
 
-        public void PrintTemperatures()
+        public override void PrintTemperatures()
         {
-            foreach (var month in _temperature.Keys)
+            foreach (var month in _calendarTemperature.Keys)
             {
-                Console.WriteLine($"{month} : {String.Join(";", _temperature[month])}");
+                Console.WriteLine($"{month} : {String.Join(";", _calendarTemperature[month])}");
             }
         }
 
