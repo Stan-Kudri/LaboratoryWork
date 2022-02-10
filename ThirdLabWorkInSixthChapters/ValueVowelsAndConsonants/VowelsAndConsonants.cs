@@ -27,11 +27,11 @@
             int valueConsonants = 0;
             foreach (char letter in listChar)
             {
-                if (_vowelsChar.Any(x => char.ToLower(x) == letter))
+                if (_vowelsChar.Contains(letter))
                 {
                     valueVowels++;
                 }
-                else if (_consonantsChar.Any(x => char.ToLower(x) == letter))
+                else if (_consonantsChar.Contains(letter))
                 {
                     valueConsonants++;
                 }
