@@ -15,8 +15,9 @@ namespace ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants
     {
         private readonly List<char> _analyzeCharacters;
 
-        public VowelsAndConsonantsList(char[] analyzeCharacters) : base(analyzeCharacters)
+        public VowelsAndConsonantsList(char[] analyzeCharacters)
         {
+            ValidateLineChar(analyzeCharacters);
             _analyzeCharacters = new List<char>(analyzeCharacters);
         }
 

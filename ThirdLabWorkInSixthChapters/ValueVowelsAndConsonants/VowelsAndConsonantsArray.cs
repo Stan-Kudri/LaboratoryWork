@@ -12,16 +12,15 @@ namespace ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants
     {
         private readonly char[] _analyzeCharacters;
 
-        public VowelsAndConsonantsArray(char[] analyzeCharacters) : base(analyzeCharacters)
+        public VowelsAndConsonantsArray(char[] analyzeCharacters)
         {
+            ValidateLineChar(analyzeCharacters);
             _analyzeCharacters = analyzeCharacters;
         }
 
         public VowelsAndConsonantsArray(string path) : this(ReadFileContent(path))
         {
         }
-
-        //public (int vowels, int consonants) Value() => CountValue(_analyzeCharacters);
 
         public static void Run()
         {

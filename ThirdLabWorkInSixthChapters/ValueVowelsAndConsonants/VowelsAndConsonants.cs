@@ -2,10 +2,10 @@
 {
     public class VowelsAndConsonants
     {
-        protected static readonly char[] _vowelsChar = { 'а', 'А', 'и', 'И', 'е', 'Е', 'ё', 'Ё', 'о', 'О', 'у', 'У', 'ы', 'Ы', 'э', 'Э', 'ю', 'Ю', 'я', 'Я' };
-        protected static readonly char[] _consonantsChar = { 'б', 'Б', 'в', 'В', 'г', 'Г', 'д', 'Д', 'ж', 'Ж', 'з', 'З', 'й', 'Й', 'к', 'К', 'л', 'Л', 'м', 'М', 'н', 'Н', 'п', 'П', 'р', 'Р', 'с', 'С', 'т', 'Т', 'ф', 'Ф', 'х', 'Х', 'ц', 'Ц', 'ч', 'Ч', 'ш', 'Ш', 'щ', 'Щ' };
+        protected static readonly HashSet<char> _vowelsChar = new() { 'а', 'А', 'и', 'И', 'е', 'Е', 'ё', 'Ё', 'о', 'О', 'у', 'У', 'ы', 'Ы', 'э', 'Э', 'ю', 'Ю', 'я', 'Я' };
+        protected static readonly HashSet<char> _consonantsChar = new() { 'б', 'Б', 'в', 'В', 'г', 'Г', 'д', 'Д', 'ж', 'Ж', 'з', 'З', 'й', 'Й', 'к', 'К', 'л', 'Л', 'м', 'М', 'н', 'Н', 'п', 'П', 'р', 'Р', 'с', 'С', 'т', 'Т', 'ф', 'Ф', 'х', 'Х', 'ц', 'Ц', 'ч', 'Ч', 'ш', 'Ш', 'щ', 'Щ' };
 
-        public VowelsAndConsonants(char[] analyzeCharacters)
+        protected static void ValidateLineChar(char[] analyzeCharacters)
         {
             if (analyzeCharacters == null)
                 throw new ArgumentNullException(nameof(analyzeCharacters));
@@ -21,7 +21,7 @@
             }
         }
 
-        protected static (int vowels, int consonants) CountValue(List<char> listChar)
+        protected static (int vowels, int consonants) CountValue(IEnumerable<char> listChar)
         {
             int valueVowels = 0;
             int valueConsonants = 0;
@@ -37,11 +37,6 @@
                 }
             }
             return (valueVowels, valueConsonants);
-        }
-
-        protected static (int vowels, int consonants) CountValue(char[] array)
-        {
-            return CountValue(new List<char>(array));
         }
     }
 }
