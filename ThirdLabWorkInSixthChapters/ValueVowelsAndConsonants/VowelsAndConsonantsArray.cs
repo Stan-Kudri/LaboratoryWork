@@ -14,7 +14,7 @@ namespace ThirdLabWorkInSixthChapters.ValueVowelsAndConsonants
 
         public VowelsAndConsonantsArray(char[] analyzeCharacters)
         {
-            ValidateLineChar(analyzeCharacters);
+            ValidateAnalyzeCharacters(analyzeCharacters);
             _analyzeCharacters = analyzeCharacters;
         }
 

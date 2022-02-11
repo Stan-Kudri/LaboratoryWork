@@ -24,7 +24,7 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
 
         public ThermometerDictionary(int[,] calendarTemperature)
         {
-            ValidateSizeCalendar(calendarTemperature);
+            ValidateTemperatureCalendar(calendarTemperature);
             _calendarTemperature = TeperatureDictionary(calendarTemperature);
         }
 

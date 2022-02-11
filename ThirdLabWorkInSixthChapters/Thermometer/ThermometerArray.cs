@@ -18,7 +18,7 @@ namespace ThirdLabWorkInSixthChapters.Thermometer
 
         public ThermometerArray(int[,] calendarTemperature)
         {
-            ValidateSizeCalendar(calendarTemperature);
+            ValidateTemperatureCalendar(calendarTemperature);
             _calendarTemperature = calendarTemperature;
         }
 

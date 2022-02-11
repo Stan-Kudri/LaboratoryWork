@@ -5,7 +5,7 @@
         protected static readonly HashSet<char> _vowelsChar = new() { 'а', 'А', 'и', 'И', 'е', 'Е', 'ё', 'Ё', 'о', 'О', 'у', 'У', 'ы', 'Ы', 'э', 'Э', 'ю', 'Ю', 'я', 'Я' };
         protected static readonly HashSet<char> _consonantsChar = new() { 'б', 'Б', 'в', 'В', 'г', 'Г', 'д', 'Д', 'ж', 'Ж', 'з', 'З', 'й', 'Й', 'к', 'К', 'л', 'Л', 'м', 'М', 'н', 'Н', 'п', 'П', 'р', 'Р', 'с', 'С', 'т', 'Т', 'ф', 'Ф', 'х', 'Х', 'ц', 'Ц', 'ч', 'Ч', 'ш', 'Ш', 'щ', 'Щ' };
 
-        protected static void ValidateLineChar(char[] analyzeCharacters)
+        protected static void ValidateAnalyzeCharacters(char[] analyzeCharacters)
         {
             if (analyzeCharacters == null)
                 throw new ArgumentNullException(nameof(analyzeCharacters));

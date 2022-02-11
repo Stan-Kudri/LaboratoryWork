@@ -23,7 +23,7 @@
             Console.WriteLine("Средняя темпрература по месяцам :{0};", String.Join(",", averageTemperatures));
         }
 
-        protected static void ValidateSizeCalendar(int[,] calendarTemperature)
+        protected static void ValidateTemperatureCalendar(int[,] calendarTemperature)
         {
             if (calendarTemperature == null)
                 throw new ArgumentNullException(nameof(calendarTemperature));
